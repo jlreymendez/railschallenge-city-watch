@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :unpermitted_parameters_check
+  before_action :unpermitted_parameters_check
 
   rescue_from(ActionController::UnpermittedParameters) do |unpermitted_parameters|
     message = { message: unpermitted_parameters.message }
