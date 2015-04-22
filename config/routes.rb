@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/responders/:name' => 'responders#show', defaults: { format: 'json' }
 
   patch 'emergencies/:code' => 'emergencies#update', defaults: { format: 'json' }
+  get 'emergencies/:code' => 'emergencies#show', defaults: { format: 'json' }
 end

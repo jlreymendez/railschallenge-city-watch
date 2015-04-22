@@ -13,6 +13,12 @@ class EmergenciesController < ApplicationController
     end
   end
 
+  def show
+    emergency = search_for_emergency_by_code
+
+    render json: emergency.to_json, status: 200 unless emergency.blank?
+  end
+
   def update
     # Get emergency and make sure it is not nil
     emergency = search_for_emergency_by_code
