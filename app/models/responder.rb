@@ -12,13 +12,11 @@ class Responder < ActiveRecord::Base
 
   def as_json(_options = nil)
     {
-      responder: {
-        name: name,
-        type: type,
-        emergency_code: emergency_code,
-        capacity: capacity,
-        on_duty: on_duty
-      }
+      name: name,
+      type: type,
+      emergency_code: emergency_code,
+      capacity: capacity,
+      on_duty: on_duty
     }
   end
 end

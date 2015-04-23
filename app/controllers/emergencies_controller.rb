@@ -7,16 +7,20 @@ class EmergenciesController < ApplicationController
     )
 
     if emergency.save
-      render json: emergency.to_json, status: 201
+      render json: { emergency: emergency }.to_json, status: 201
     else
       render json: { message: emergency.errors }.to_json, status: 422
     end
   end
 
+  def index
+    render json: { emergencies: Emergency.all }.to_json, status: 200
+  end
+
   def show
     emergency = search_for_emergency_by_code
 
-    render json: emergency.to_json, status: 200 unless emergency.blank?
+    render json: { emergency: emergency }.to_json, status: 200 unless emergency.blank?
   end
 
   def update
@@ -36,7 +40,7 @@ class EmergenciesController < ApplicationController
       )
     # Respond either with emergency or with error messages.
     if emergency.save
-      render json: emergency.to_json, status: 200
+      render json: { emergency: emergency }.to_json, status: 200
     else
       render json: { message: emergency.errors }.to_json, status: 422
     end

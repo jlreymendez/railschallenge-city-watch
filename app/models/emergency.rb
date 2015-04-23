@@ -10,13 +10,11 @@ class Emergency < ActiveRecord::Base
 
   def as_json(_options = nil)
     {
-      emergency: {
-        code: code,
-        fire_severity: fire_severity,
-        police_severity: police_severity,
-        medical_severity: medical_severity,
-        resolved_at: resolved_at
-      }
+      code: code,
+      fire_severity: fire_severity,
+      police_severity: police_severity,
+      medical_severity: medical_severity,
+      resolved_at: resolved_at
     }
   end
 end
