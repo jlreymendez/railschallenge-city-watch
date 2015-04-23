@@ -46,8 +46,9 @@ class EmergenciesController < ApplicationController
 
   def search_for_emergency_by_code
     emergency = Emergency.where(code: params.require(:code)).first
-    # Respond to request if empty and return emergency
-    render json: {}.to_json, status: 404 if emergency.blank?
+    # Raise routing error if emergency wasn't found.
+    fail ActionController::RoutingError, params[:code] if emergency.blank?
+    # Return emergency
     emergency
   end
 end

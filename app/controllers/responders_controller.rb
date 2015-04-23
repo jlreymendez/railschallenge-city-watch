@@ -38,8 +38,9 @@ class RespondersController < ApplicationController
 
   def search_for_named_responder
     responder = Responder.where(name: params.require(:name)).first
-    # Respond to request if empty and return responder
-    render json: {}.to_json, status: 404 if responder.blank?
+    # Raise routing error if responder wasn't found.
+    fail ActionController::RoutingError, params[:name] if responder.blank?
+    # Return responder
     responder
   end
 end
