@@ -12,7 +12,11 @@ class RespondersController < ApplicationController
   end
 
   def index
-    render json: { responders: Responder.all }.to_json, status: 200
+    if params[:show] == 'capacity'
+      render json: { capacity: Responder.full_capacity }.to_json, status: 200
+    else
+      render json: { responders: Responder.all }.to_json, status: 200
+    end
   end
 
   def show

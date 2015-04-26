@@ -1,2 +1,0 @@
-class Police < Responder
-end

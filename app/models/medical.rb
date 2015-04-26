@@ -1,2 +1,0 @@
-class Medical < Responder
-end

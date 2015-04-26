@@ -7,6 +7,7 @@ class EmergenciesController < ApplicationController
     )
 
     if emergency.save
+      Responder.dispatch_to(emergency)
       render json: { emergency: emergency }.to_json, status: 201
     else
       render json: { message: emergency.errors }.to_json, status: 422
@@ -14,7 +15,10 @@ class EmergenciesController < ApplicationController
   end
 
   def index
-    render json: { emergencies: Emergency.all }.to_json, status: 200
+    render json: {
+      emergencies: Emergency.all,
+      full_responses: [Emergency.full_responses.count, Emergency.all.count]
+    }.to_json, status: 200
   end
 
   def show
